@@ -214,7 +214,6 @@ export function ContactForm() {
 
 ```tsx
 import { cn } from '@lib/utils'
-
 ;<button className={cn('rounded-lg px-4 py-2', isPrimary && 'bg-black text-white')}>
   Click me
 </button>
@@ -328,10 +327,10 @@ docker build \
 
 Add your environment variables to `.env` (copied from `.env.example`). Variables prefixed with `PUBLIC_` are exposed to the client.
 
-| Variable        | Required | Description                  |
-| --------------- | -------- | ---------------------------- |
-| `PUBLIC_*`      | —        | Client-exposed variables     |
-| `SECRET_*`      | —        | Server-only variables        |
+| Variable   | Required | Description              |
+| ---------- | -------- | ------------------------ |
+| `PUBLIC_*` | —        | Client-exposed variables |
+| `SECRET_*` | —        | Server-only variables    |
 
 ### Docker Scripts
 

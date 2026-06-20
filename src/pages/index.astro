@@ -2,9 +2,64 @@
 import Layout from '@layouts/Layout.astro'
 ---
 
-<Layout title="My App" description="A modern web application built with Astro.">
-  <section class="container-wide mx-auto px-5 py-20 md:px-12">
-    <h1 class="text-5xl font-semibold tracking-tight text-gray-900">Welcome to My App</h1>
-    <p class="mt-4 text-lg text-gray-500">Start building your next project here.</p>
-  </section>
+<Layout title="Foundation preview">
+  <main class="mx-auto max-w-[1160px] px-6 py-24">
+    <p class="text-accent font-mono text-sm font-semibold tracking-[0.06em]">
+      &lt;hello world /&gt;
+    </p>
+
+    <h1
+      class="font-display text-ink mt-3 text-[clamp(52px,7.2vw,92px)] leading-[0.94] font-extrabold tracking-[-0.03em]"
+    >
+      Artem<br />Rozzhyvin
+    </h1>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <button
+        class="bg-accent text-accent-contrast inline-flex items-center gap-2 rounded-full px-6 py-3.5 font-sans text-[15.5px] font-bold shadow-[0_14px_32px_-12px_var(--accent)]"
+      >
+        Contact me
+      </button>
+      <span
+        data-card
+        class="glass text-ink inline-flex items-center gap-2 rounded-full px-5 py-3 text-[15.5px] font-bold"
+      >
+        Download CV
+      </span>
+      <button
+        id="theme-demo-toggle"
+        data-card
+        class="glass-2 text-ink grid size-[42px] place-items-center rounded-full"
+        aria-label="Toggle theme"
+      >
+        ☾
+      </button>
+    </div>
+
+    <div data-card class="glass mt-10 max-w-[640px] rounded-(--card-radius-lg) p-8">
+      <p class="text-faint font-mono text-[11px] tracking-[0.06em]">FEATURED</p>
+      <h2 class="font-display text-ink mt-2 text-[28px] font-bold tracking-[-0.01em]">
+        Handyman Landing
+      </h2>
+      <div class="mt-5 flex flex-wrap gap-2">
+        <span class="tag"><span class="text-accent">&lt;/&gt;</span> React</span>
+        <span class="tag"><span class="text-accent">TS</span> TypeScript</span>
+        <span class="tag"><span class="text-accent">▲</span> Next.js</span>
+      </div>
+    </div>
+  </main>
+
+  <script is:inline>
+    const toggle = document.getElementById('theme-demo-toggle')
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const el = document.documentElement
+        const next = el.dataset.theme === 'dark' ? 'light' : 'dark'
+        el.dataset.theme = next
+        try {
+          localStorage.setItem('theme', next)
+        } catch {}
+      })
+    }
+  </script>
 </Layout>
