@@ -1,48 +1,18 @@
 ---
-import { Button, Input, Tag, Textarea } from '@components/ui'
+import { getProfile } from '@services/portfolio'
 import Layout from '@layouts/Layout.astro'
+
+import About from './_ui/About.astro'
+import AmbientBlobs from './_ui/AmbientBlobs.astro'
+import Hero from './_ui/Hero.astro'
+
+const profile = await getProfile()
 ---
 
-<Layout title="UI preview">
-  <main class="mx-auto max-w-[1160px] space-y-10 px-6 py-24">
-    <h1
-      class="font-display text-ink text-[clamp(40px,6vw,72px)] leading-[0.94] font-extrabold tracking-[-0.03em]"
-    >
-      UI preview
-    </h1>
-
-    <div class="flex flex-wrap items-center gap-3">
-      <Button variant="accent" rounded="full">Contact me</Button>
-      <Button variant="glass" rounded="full">Download CV</Button>
-      <Button variant="soft" rounded="full">All projects</Button>
-      <Button id="theme-demo-toggle" variant="glassStrong" size="icon" rounded="full">☾</Button>
-    </div>
-
-    <div data-card class="glass max-w-[640px] rounded-(--card-radius-lg) p-8">
-      <div class="flex flex-wrap gap-2">
-        <Tag><span class="text-accent">&lt;/&gt;</span> React</Tag>
-        <Tag><span class="text-accent">TS</span> TypeScript</Tag>
-        <Tag><span class="text-accent">▲</span> Next.js</Tag>
-      </div>
-    </div>
-
-    <div class="grid max-w-[640px] gap-4">
-      <Input label="Email" type="email" placeholder="you@example.com" />
-      <Textarea label="Message" placeholder="Tell me about your project…" />
-    </div>
+<Layout>
+  <AmbientBlobs />
+  <main class="relative z-1 mx-auto max-w-[1160px] px-6">
+    <Hero profile={profile} />
+    <About profile={profile} />
   </main>
-
-  <script is:inline>
-    const toggle = document.getElementById('theme-demo-toggle')
-    if (toggle) {
-      toggle.addEventListener('click', () => {
-        const el = document.documentElement
-        const next = el.dataset.theme === 'dark' ? 'light' : 'dark'
-        el.dataset.theme = next
-        try {
-          localStorage.setItem('theme', next)
-        } catch {}
-      })
-    }
-  </script>
 </Layout>

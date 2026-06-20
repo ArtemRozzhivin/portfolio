@@ -109,5 +109,5 @@ export const profile: Profile = {
     { prefix: '2+', label: 'yrs exp' },
     { prefix: '•', label: 'Ukraine · Remote' },
   ],
-  avatar: '/assets/avatar.jpg',
+  avatar: '/assets/avatar.jpeg',
 }

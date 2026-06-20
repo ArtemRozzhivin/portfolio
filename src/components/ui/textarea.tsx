@@ -24,7 +24,7 @@ function Textarea({ className, label, error, id, rows = 5, ...props }: TextareaP
         id={textareaId}
         rows={rows}
         className={cn(
-          'border-field-border bg-field-bg text-ink placeholder:text-faint focus-visible:border-accent focus-visible:ring-accent/25 min-h-[130px] w-full resize-y rounded-[var(--card-radius)] border px-[18px] py-3.5 text-[15px] leading-[1.55] transition-colors outline-none focus-visible:ring-2',
+          'border-field-border bg-field-bg text-ink placeholder:text-faint focus-visible:border-accent focus-visible:ring-accent/25 min-h-[130px] w-full resize-y rounded-(--card-radius) border px-[18px] py-3.5 text-[15px] leading-[1.55] transition-colors outline-none focus-visible:ring-2',
           error && 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/25',
           className,
         )}

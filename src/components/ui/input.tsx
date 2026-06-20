@@ -24,7 +24,7 @@ function Input({ className, type, label, error, id, ...props }: InputProps) {
         id={inputId}
         type={type}
         className={cn(
-          'border-field-border bg-field-bg text-ink placeholder:text-faint focus-visible:border-accent focus-visible:ring-accent/25 h-[52px] w-full rounded-[var(--card-radius)] border px-[18px] text-[15px] transition-colors outline-none focus-visible:ring-2',
+          'border-field-border bg-field-bg text-ink placeholder:text-faint focus-visible:border-accent focus-visible:ring-accent/25 h-[52px] w-full rounded-(--card-radius) border px-[18px] text-[15px] transition-colors outline-none focus-visible:ring-2',
           error && 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/25',
           className,
         )}
