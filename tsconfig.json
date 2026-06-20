@@ -9,6 +9,7 @@
     "paths": {
       "@lib": ["lib/index.ts"],
       "@lib/*": ["lib/*"],
+      "@services/*": ["services/*"],
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],

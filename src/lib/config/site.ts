@@ -1,36 +1,50 @@
 export const siteConfig = {
-  name: 'My App',
-  description: 'A modern web application built with Astro.',
-  url: 'https://your-site.com',
+  name: 'Artem Rozzhyvin',
+  description:
+    'Frontend developer with 2+ years of experience building fast, accessible web apps with React, Next.js and TypeScript.',
+  url: 'https://artem.dev',
   ogImage: '/og.png',
 
   author: {
-    name: 'Your Name',
-    email: 'hello@your-site.com',
-    twitter: '@yourhandle',
+    name: 'Artem Rozzhyvin',
+    email: 'artiomrozzhyvin@gmail.com',
+    twitter: '',
   },
 
-  keywords: ['astro', 'landing page', 'marketing'],
+  keywords: [
+    'Artem Rozzhyvin',
+    'Frontend Developer',
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Portfolio',
+  ],
+
+  brand: {
+    mark: 'AR',
+    word: 'artem.dev',
+  },
 
   nav: [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Home', href: '#home' },
+    { label: 'About', href: '#about' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Contact', href: '#contact' },
   ],
 
   social: {
-    twitter: 'https://twitter.com/yourhandle',
-    github: 'https://github.com/yourusername',
-    linkedin: 'https://linkedin.com/in/yourprofile',
+    github: 'https://github.com/ArtemRozzhivin',
+    linkedin: 'https://www.linkedin.com/in/artem-rozzhyvin-710757259/',
+    email: 'artiomrozzhyvin@gmail.com',
   },
 
+  cvUrl: 'https://drive.google.com/file/d/14F_FG34a9RStijTHu4KGtQ91jDoTdUr0/view',
+
   footer: {
-    links: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
-    ],
-    copyright: `© ${new Date().getFullYear()} My App. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Artem Rozzhyvin — All rights reserved.`,
+    tech: 'Built with Astro, React, TypeScript & Tailwind CSS.',
   },
 } as const
 
