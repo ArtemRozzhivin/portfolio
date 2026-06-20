@@ -1,12 +1,21 @@
 ---
-import { getProfile } from '@services/portfolio'
+import { getExperience, getProfile, getProjects, getSkillGroups } from '@services/portfolio'
+import Footer from '@components/layout/Footer.astro'
 import Layout from '@layouts/Layout.astro'
 
 import About from './_ui/About.astro'
 import AmbientBlobs from './_ui/AmbientBlobs.astro'
+import Experience from './_ui/Experience.astro'
 import Hero from './_ui/Hero.astro'
+import Projects from './_ui/Projects.astro'
+import Skills from './_ui/Skills.astro'
 
-const profile = await getProfile()
+const [profile, projects, skills, experience] = await Promise.all([
+  getProfile(),
+  getProjects(),
+  getSkillGroups(),
+  getExperience(),
+])
 ---
 
 <Layout>
@@ -14,5 +23,9 @@ const profile = await getProfile()
   <main class="relative z-1 mx-auto max-w-[1160px] px-6">
     <Hero profile={profile} />
     <About profile={profile} />
+    <Projects projects={projects} />
+    <Skills skills={skills} />
+    <Experience experience={experience} />
+    <Footer />
   </main>
 </Layout>

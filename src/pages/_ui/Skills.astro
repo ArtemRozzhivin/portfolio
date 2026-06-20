@@ -1,0 +1,55 @@
+---
+import type { SkillGroup } from '@services/portfolio'
+import SkillIcon from '@components/ui/icons/SkillIcon.astro'
+
+interface Props {
+  skills: SkillGroup[]
+}
+
+const { skills } = Astro.props
+const delays = [0, 70, 140, 40, 110]
+---
+
+<section id="skills" data-spy="skills" class="py-20">
+  <div data-reveal class="mb-10">
+    <p class="text-accent mb-2.5 font-mono text-[13px] font-semibold tracking-[0.06em]">
+      03 / TOOLKIT
+    </p>
+    <h2
+      class="font-display text-ink mb-2 text-[clamp(34px,4.6vw,56px)] font-bold tracking-[-0.025em]"
+    >
+      Skills &amp; technologies
+    </h2>
+    <p class="text-dim max-w-[60ch] text-[16.5px]">
+      The technologies and tools I reach for when building products — from frontend to backend.
+    </p>
+  </div>
+
+  <div data-skills class="grid grid-cols-3 gap-[18px]">
+    {
+      skills.map((group, i) => (
+        <div
+          data-reveal
+          data-delay={delays[i]}
+          data-card
+          class:list={['glass rounded-(--card-radius-lg) p-6', group.wide && 'col-span-2']}
+        >
+          <div class="mb-[18px] flex items-center gap-[11px]">
+            <span class="bg-accent-soft text-accent grid size-9 place-items-center rounded-[10px]">
+              <SkillIcon name={group.icon} class="size-[18px]" />
+            </span>
+            <h3 class="font-display text-ink text-[17px] font-bold">{group.title}</h3>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {group.skills.map((skill) => (
+              <span class="bg-tag-bg text-ink border-tag-border inline-flex items-center gap-[7px] rounded-[10px] border px-[13px] py-2 font-mono text-[13px] font-medium">
+                <span class="bg-accent size-1.5 rounded-full" />
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
