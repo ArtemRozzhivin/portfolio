@@ -4,6 +4,7 @@ import '../styles/global.css'
 import { ClientRouter } from 'astro:transitions'
 
 import { siteConfig } from '@lib/config/site'
+import Header from '@components/layout/Header.astro'
 import ThemeScript from '@components/layout/ThemeScript.astro'
 
 interface Props {
@@ -68,6 +69,7 @@ const ogImageURL = new URL(ogImage, siteConfig.url)
   </head>
 
   <body class="min-h-screen">
+    <Header />
     <slot />
   </body>
 </html>

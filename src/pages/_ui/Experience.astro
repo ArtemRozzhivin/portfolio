@@ -64,9 +64,9 @@ const { experience } = Astro.props
             data-tl-node
             aria-hidden="true"
             class:list={[
-              'absolute top-1/2 left-1/2 z-2 grid size-[46px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-[var(--page-base)]',
+              'absolute top-1/2 left-1/2 z-2 grid size-[46px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-(--page-base)',
               job.current
-                ? 'bg-accent text-accent-contrast shadow-[var(--card-shadow)]'
+                ? 'bg-accent text-accent-contrast shadow-(--card-shadow)'
                 : 'glass-2 text-accent',
             ]}
           >
