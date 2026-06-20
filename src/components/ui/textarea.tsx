@@ -7,7 +7,7 @@ interface TextareaProps extends React.ComponentProps<'textarea'> {
   error?: string
 }
 
-function Textarea({ className, label, error, id, rows = 5, ...props }: TextareaProps) {
+function Textarea({ ref, className, label, error, id, rows = 5, ...props }: TextareaProps) {
   const textareaId = id || React.useId()
 
   return (
@@ -21,6 +21,7 @@ function Textarea({ className, label, error, id, rows = 5, ...props }: TextareaP
         </label>
       )}
       <textarea
+        ref={ref}
         id={textareaId}
         rows={rows}
         className={cn(

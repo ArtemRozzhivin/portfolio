@@ -7,7 +7,7 @@ interface InputProps extends React.ComponentProps<'input'> {
   error?: string
 }
 
-function Input({ className, type, label, error, id, ...props }: InputProps) {
+function Input({ ref, className, type, label, error, id, ...props }: InputProps) {
   const inputId = id || React.useId()
 
   return (
@@ -21,6 +21,7 @@ function Input({ className, type, label, error, id, ...props }: InputProps) {
         </label>
       )}
       <input
+        ref={ref}
         id={inputId}
         type={type}
         className={cn(

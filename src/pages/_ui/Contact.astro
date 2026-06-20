@@ -1,0 +1,46 @@
+---
+import { siteConfig } from '@lib/config/site'
+import { ContactForm } from '@components/islands/contact-form'
+import MailIcon from '@components/ui/icons/MailIcon.astro'
+---
+
+<section id="contact" data-spy="contact" class="pt-20 pb-10">
+  <div
+    data-reveal
+    data-card
+    class="glass relative overflow-hidden rounded-(--card-radius-lg) p-[clamp(28px,4vw,52px)] shadow-(--glow)"
+  >
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute -top-[40%] -right-[10%] size-[380px] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_70%)]"
+    >
+    </div>
+
+    <div data-2col class="relative grid grid-cols-[0.9fr_1.1fr] items-center gap-10">
+      <div>
+        <p class="text-accent mb-2.5 font-mono text-[13px] font-semibold tracking-[0.06em]">
+          05 / CONTACT
+        </p>
+        <h2
+          class="font-display text-ink mb-4 text-[clamp(30px,3.6vw,44px)] font-bold tracking-[-0.025em]"
+        >
+          Let's build something together
+        </h2>
+        <p class="text-dim mb-6 text-[16px] leading-[1.6]">
+          I'm currently open to new opportunities and exciting projects. Drop me a message — or
+          reach me directly.
+        </p>
+        <a
+          href={`mailto:${siteConfig.social.email}`}
+          data-card
+          class="glass-2 text-ink inline-flex items-center gap-2.5 rounded-[14px] px-[18px] py-[13px] font-mono text-[13.5px] font-medium"
+        >
+          <MailIcon class="text-accent size-[17px]" />
+          {siteConfig.social.email}
+        </a>
+      </div>
+
+      <ContactForm client:visible />
+    </div>
+  </div>
+</section>
