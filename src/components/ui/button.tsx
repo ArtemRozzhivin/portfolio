@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@lib/utils/tailwind-merge'
 
 const buttonVariants = cva(
-  "inline-flex w-fit items-center cursor-pointer justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-[#52d1fc] focus-visible:ring-offset-2",
+  "inline-flex w-fit items-center cursor-pointer justify-center gap-2 whitespace-nowrap font-medium transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
   {
     variants: {
       variant: {
@@ -21,6 +21,11 @@ const buttonVariants = cva(
         secondary:
           'border border-gray-300 bg-gray-100 text-gray-900 hover:bg-gray-200 hover:-translate-y-1 hover:shadow-lg',
         blur: 'backdrop-blur-sm bg-white/55 border border-black hover:bg-white/70 hover:text-[#52d1fc]',
+        accent:
+          'border border-transparent bg-accent text-accent-contrast shadow-[0_14px_32px_-12px_var(--accent)] hover:shadow-[0_18px_42px_-12px_var(--accent)]',
+        glass: 'glass text-ink',
+        glassStrong: 'glass-2 text-ink',
+        soft: 'border border-tag-border bg-tag-bg text-ink hover:text-accent',
       },
       size: {
         default: 'px-[30px] py-[14px] text-lg leading-6',
