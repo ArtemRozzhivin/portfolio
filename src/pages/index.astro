@@ -30,4 +30,18 @@ const [profile, projects, skills, experience] = await Promise.all([
     <Contact />
     <Footer />
   </main>
+
+  <script>
+    import { initMotion } from '@lib/utils/motion'
+
+    const run = () => {
+      try {
+        initMotion()
+      } catch {
+        document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-revealed'))
+      }
+    }
+
+    document.addEventListener('astro:page-load', run)
+  </script>
 </Layout>

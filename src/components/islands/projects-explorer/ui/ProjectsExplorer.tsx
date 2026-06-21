@@ -39,7 +39,7 @@ export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) 
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Content className="fixed inset-0 z-[80] animate-[fadeUp_0.35s_ease] overflow-y-auto bg-[var(--page-base)] bg-[image:var(--page-bg)]">
+        <Dialog.Content className="fixed inset-0 z-80 animate-[fadeUp_0.35s_ease] overflow-y-auto bg-(--page-base) bg-(image:--page-bg)">
           <div aria-hidden="true" className="pointer-events-none fixed inset-0 overflow-hidden">
             <div className="absolute -top-[12%] -right-[6%] h-[44vw] max-h-[640px] w-[44vw] max-w-[640px] rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_68%)] blur-sm"></div>
           </div>
@@ -47,7 +47,7 @@ export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) 
           <nav className="sticky top-[18px] z-10 mx-auto mt-[18px] w-[min(1100px,calc(100%-28px))]">
             <div
               data-card
-              className="border-card-border bg-nav-bg flex items-center justify-between rounded-full border py-2.5 pr-3 pl-3.5 shadow-[var(--card-shadow)] backdrop-blur-[var(--blur)]"
+              className="border-card-border bg-nav-bg flex items-center justify-between rounded-full border py-2.5 pr-3 pl-3.5 shadow-(--card-shadow) backdrop-blur-(--blur)"
             >
               <Dialog.Close asChild>
                 <button
@@ -64,7 +64,7 @@ export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) 
             </div>
           </nav>
 
-          <div className="relative z-[1] mx-auto max-w-[1100px] px-6 pt-9 pb-[70px]">
+          <div className="relative z-1 mx-auto max-w-[1100px] px-6 pt-9 pb-[70px]">
             <div className="mb-[30px]">
               <Dialog.Title asChild>
                 <h1 className="font-display text-ink mb-2.5 text-[clamp(40px,6vw,68px)] font-extrabold tracking-[-0.03em]">
