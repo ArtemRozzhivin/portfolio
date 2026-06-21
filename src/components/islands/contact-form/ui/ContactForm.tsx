@@ -47,11 +47,13 @@ export function ContactForm() {
       <Input
         type="email"
         placeholder="Your email"
+        aria-label="Your email"
         error={errors.email?.message}
         {...register('email')}
       />
       <Textarea
         placeholder="Your message"
+        aria-label="Your message"
         error={errors.message?.message}
         {...register('message')}
       />

@@ -25,7 +25,11 @@ export function Header() {
 
   const onNav = (event: React.MouseEvent, href: string) => {
     event.preventDefault()
-    scrollToId(href.slice(1))
+    if (document.getElementById(href.slice(1))) {
+      scrollToId(href.slice(1))
+    } else {
+      window.location.href = `/${href}`
+    }
   }
 
   const isDark = theme === 'dark'
