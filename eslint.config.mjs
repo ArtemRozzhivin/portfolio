@@ -16,6 +16,7 @@ export default [
       'public/**',
       '.cache/**',
       'temp/**',
+      'studio/**',
     ],
   },
 
