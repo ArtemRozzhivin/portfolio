@@ -204,6 +204,43 @@
   transform: none;
 }
 
+.tt-rays {
+  transform-origin: 12px 12px;
+  transition:
+    opacity 500ms ease,
+    transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme='light'] .tt-rays {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+[data-theme='dark'] .tt-rays {
+  opacity: 0;
+  transform: rotate(60deg) scale(0.4);
+}
+.tt-body {
+  transition: r 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme='light'] .tt-body {
+  r: 7px;
+}
+[data-theme='dark'] .tt-body {
+  r: 9px;
+}
+.tt-mask-circle {
+  transition:
+    cx 700ms cubic-bezier(0.4, 0, 0.2, 1),
+    cy 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme='light'] .tt-mask-circle {
+  cx: 30px;
+  cy: 0;
+}
+[data-theme='dark'] .tt-mask-circle {
+  cx: 17px;
+  cy: 7px;
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;

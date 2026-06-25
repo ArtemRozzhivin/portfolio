@@ -4,24 +4,33 @@ import { experience, profile, projects, skillGroups } from './data'
 import { EXPERIENCE_QUERY, PROFILE_QUERY, PROJECTS_QUERY, SKILLS_QUERY } from './queries'
 import type { ExperienceEntry, Profile, Project, SkillGroup } from './types'
 
+async function fromSanity<T>(query: string): Promise<T | null> {
+  if (!sanityClient) return null
+  try {
+    return await sanityClient.fetch<T>(query)
+  } catch {
+    return null
+  }
+}
+
 export async function getProjects(): Promise<Project[]> {
-  if (sanityClient) return sanityClient.fetch<Project[]>(PROJECTS_QUERY)
-  return projects
+  const result = await fromSanity<Project[]>(PROJECTS_QUERY)
+  return result?.length ? result : projects
 }
 
 export async function getExperience(): Promise<ExperienceEntry[]> {
-  if (sanityClient) return sanityClient.fetch<ExperienceEntry[]>(EXPERIENCE_QUERY)
-  return experience
+  const result = await fromSanity<ExperienceEntry[]>(EXPERIENCE_QUERY)
+  return result?.length ? result : experience
 }
 
 export async function getSkillGroups(): Promise<SkillGroup[]> {
-  if (sanityClient) return sanityClient.fetch<SkillGroup[]>(SKILLS_QUERY)
-  return skillGroups
+  const result = await fromSanity<SkillGroup[]>(SKILLS_QUERY)
+  return result?.length ? result : skillGroups
 }
 
 export async function getProfile(): Promise<Profile> {
-  if (sanityClient) return sanityClient.fetch<Profile>(PROFILE_QUERY)
-  return profile
+  const result = await fromSanity<Profile>(PROFILE_QUERY)
+  return result?.name ? result : profile
 }
 
 export function getAllTechs(items: Project[]): string[] {

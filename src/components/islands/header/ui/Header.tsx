@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
-
 import { siteConfig } from '@lib/config/site'
-import { getActiveTheme, type Theme, toggleTheme } from '@lib/utils/theme'
+import { ThemeToggle } from '@components/ui'
 
 import { useScrollState } from '../hooks/useScrollState'
 
@@ -17,11 +15,6 @@ function scrollToId(id: string) {
 
 export function Header() {
   const { scrolled, activeSection } = useScrollState()
-  const [theme, setTheme] = useState<Theme>('light')
-
-  useEffect(() => {
-    setTheme(getActiveTheme())
-  }, [])
 
   const onNav = (event: React.MouseEvent, href: string) => {
     event.preventDefault()
@@ -31,8 +24,6 @@ export function Header() {
       window.location.href = `/${href}`
     }
   }
-
-  const isDark = theme === 'dark'
 
   return (
     <nav
@@ -93,44 +84,7 @@ export function Header() {
           })}
         </ul>
 
-        <button
-          type="button"
-          onClick={() => setTheme(toggleTheme())}
-          aria-label="Toggle theme"
-          data-card
-          className="glass-2 text-ink grid size-[38px] shrink-0 place-items-center rounded-full"
-        >
-          {isDark ? (
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
-            </svg>
-          ) : (
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
-            </svg>
-          )}
-        </button>
+        <ThemeToggle />
       </div>
     </nav>
   )
