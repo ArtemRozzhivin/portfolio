@@ -39,6 +39,10 @@ const [profile, projects, skills, experience] = await Promise.all([
         initMotion()
       } catch {
         document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-revealed'))
+        document.querySelectorAll('[data-tl-row]').forEach((el) => el.classList.add('is-active'))
+        document
+          .querySelectorAll('[data-tl]')
+          .forEach((el) => el.style.setProperty('--tl-progress', '1'))
       }
     }
 

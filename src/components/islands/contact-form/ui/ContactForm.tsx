@@ -1,9 +1,10 @@
+import { siteConfig } from '@lib/config/site'
 import { Button, Input, Textarea } from '@components/ui'
 
 import { useContactForm } from '../hooks/useContactForm'
 
 export function ContactForm() {
-  const { form, onSubmit, sent, submitError, reset, isSubmitting } = useContactForm()
+  const { form, onSubmit, sent, failed, reset, isSubmitting } = useContactForm()
   const {
     register,
     formState: { errors },
@@ -11,8 +12,11 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div data-card className="glass-2 rounded-(--card-radius) px-7 py-10 text-center">
-        <div className="bg-accent text-accent-contrast mx-auto mb-[18px] grid size-14 place-items-center rounded-full">
+      <div
+        data-card
+        className="glass-2 animate-[popIn_0.4s_cubic-bezier(0.4,0,0.2,1)] rounded-(--card-radius) px-7 py-10 text-center"
+      >
+        <div className="bg-accent text-accent-contrast mx-auto mb-[18px] grid size-14 origin-center animate-[checkPop_0.5s_cubic-bezier(0.34,1.56,0.64,1)_0.12s_both] place-items-center rounded-full">
           <svg
             width="26"
             height="26"
@@ -58,7 +62,18 @@ export function ContactForm() {
         {...register('message')}
       />
 
-      {submitError && <p className="text-sm text-red-500">{submitError}</p>}
+      {failed && (
+        <p role="alert" className="text-dim animate-[popIn_0.3s_ease] text-[14px] leading-relaxed">
+          Sorry, the form isn't available right now — please reach me directly at{' '}
+          <a
+            href={`mailto:${siteConfig.social.email}`}
+            className="text-accent font-medium hover:underline"
+          >
+            {siteConfig.social.email}
+          </a>
+          .
+        </p>
+      )}
 
       <Button
         type="submit"

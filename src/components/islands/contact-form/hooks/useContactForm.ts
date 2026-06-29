@@ -9,7 +9,7 @@ const ACCESS_KEY = import.meta.env.PUBLIC_WEB_FORMS_API_KEY
 
 export function useContactForm() {
   const [sent, setSent] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [failed, setFailed] = useState(false)
 
   const form = useForm<ContactValues>({
     resolver: zodResolver(contactSchema),
@@ -17,10 +17,10 @@ export function useContactForm() {
   })
 
   const onSubmit = form.handleSubmit(async (values) => {
-    setSubmitError(null)
+    setFailed(false)
 
     if (!ACCESS_KEY) {
-      setSubmitError('Contact form is not configured yet.')
+      setFailed(true)
       return
     }
 
@@ -42,23 +42,23 @@ export function useContactForm() {
         setSent(true)
         form.reset()
       } else {
-        setSubmitError(data.message || 'Something went wrong. Please try again.')
+        setFailed(true)
       }
     } catch {
-      setSubmitError('Network error. Please try again.')
+      setFailed(true)
     }
   })
 
   const reset = () => {
     setSent(false)
-    setSubmitError(null)
+    setFailed(false)
   }
 
   return {
     form,
     onSubmit,
     sent,
-    submitError,
+    failed,
     reset,
     isSubmitting: form.formState.isSubmitting,
   }

@@ -1,5 +1,5 @@
 <script is:inline>
-  document.documentElement.classList.add('js')
+  const applyJsFlag = () => document.documentElement.classList.add('js')
 
   const applyStoredTheme = () => {
     try {
@@ -13,6 +13,10 @@
     } catch {}
   }
 
+  applyJsFlag()
   applyStoredTheme()
-  document.addEventListener('astro:after-swap', applyStoredTheme)
+  document.addEventListener('astro:after-swap', () => {
+    applyJsFlag()
+    applyStoredTheme()
+  })
 </script>

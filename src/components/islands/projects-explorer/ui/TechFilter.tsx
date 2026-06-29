@@ -31,14 +31,14 @@ export function TechFilter({ techs, selected, onToggle, onClear }: TechFilterPro
   const label = selected.length === 0 ? 'All technologies' : `${selected.length} selected`
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative w-full sm:w-auto">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
         data-card
         aria-haspopup="listbox"
         aria-expanded={open}
-        className="bg-field-bg text-ink border-field-border inline-flex items-center gap-2.5 rounded-[14px] border px-[18px] py-3.5 text-[14.5px] font-semibold"
+        className="bg-field-bg text-ink border-field-border inline-flex w-full items-center justify-between gap-2.5 rounded-[14px] border px-[18px] py-3.5 text-[14.5px] font-semibold sm:w-auto sm:justify-start"
       >
         {label}
         <ChevronDown className="size-3.5" />
@@ -49,7 +49,7 @@ export function TechFilter({ techs, selected, onToggle, onClear }: TechFilterPro
           data-card
           role="listbox"
           aria-multiselectable="true"
-          className="glass-2 absolute top-[calc(100%+8px)] right-0 z-20 w-[230px] rounded-2xl p-2"
+          className="glass-2 absolute top-[calc(100%+8px)] left-0 z-20 w-full rounded-2xl p-2 sm:right-0 sm:left-auto sm:w-[230px]"
         >
           <button
             type="button"

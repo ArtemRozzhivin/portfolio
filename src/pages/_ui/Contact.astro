@@ -33,10 +33,10 @@ import MailIcon from '@components/ui/icons/MailIcon.astro'
         <a
           href={`mailto:${siteConfig.social.email}`}
           data-card
-          class="glass-2 text-ink inline-flex items-center gap-2.5 rounded-[14px] px-[18px] py-[13px] font-mono text-[13.5px] font-medium"
+          class="glass-2 text-ink inline-flex max-w-full items-center gap-2.5 rounded-[14px] px-[18px] py-[13px] font-mono text-[13.5px] font-medium"
         >
-          <MailIcon class="text-accent size-[17px]" />
-          {siteConfig.social.email}
+          <MailIcon class="text-accent size-[17px] shrink-0" />
+          <span class="min-w-0 break-all">{siteConfig.social.email}</span>
         </a>
       </div>
 

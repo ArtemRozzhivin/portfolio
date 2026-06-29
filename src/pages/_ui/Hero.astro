@@ -5,6 +5,7 @@ import ArrowRightIcon from '@components/ui/icons/ArrowRightIcon.astro'
 import DownloadIcon from '@components/ui/icons/DownloadIcon.astro'
 import GithubIcon from '@components/ui/icons/GithubIcon.astro'
 import LinkedinIcon from '@components/ui/icons/LinkedinIcon.astro'
+import OptimizedImage from '@components/ui/OptimizedImage.astro'
 
 interface Props {
   profile: Profile
@@ -138,7 +139,13 @@ const badgePositions = [
           data-card
           class="glass-2 relative aspect-square overflow-hidden rounded-(--card-radius-lg)"
         >
-          <img src={profile.avatar} alt={profile.name} class="h-full w-full object-cover" />
+          <OptimizedImage
+            src={profile.avatar}
+            alt={profile.name}
+            width={560}
+            loading="eager"
+            class="h-full w-full object-cover"
+          />
         </div>
 
         {
@@ -146,7 +153,7 @@ const badgePositions = [
             <div
               data-card
               class:list={[
-                'glass text-ink absolute inline-flex items-center gap-1.5 rounded-[12px] px-[13px] py-[9px] font-mono text-[11.5px] font-semibold whitespace-nowrap',
+                'glass text-ink absolute inline-flex items-center gap-1.5 rounded-[12px] px-[13px] py-[9px] font-mono text-[11.5px] font-semibold whitespace-nowrap max-[424px]:hidden',
                 badgePositions[i],
               ]}
             >

@@ -8,7 +8,7 @@ interface Props {
 const { job } = Astro.props
 ---
 
-<div data-reveal data-card class="glass rounded-(--card-radius-lg) px-7 py-[26px]">
+<div data-tl-card data-card class="glass rounded-(--card-radius-lg) px-7 py-[26px]">
   <h3 class="font-display text-ink mb-[3px] text-[21px] font-bold">{job.role}</h3>
   <p class="text-accent mb-4 font-mono text-[12.5px] font-semibold">{job.company} · {job.meta}</p>
   <ul class="flex flex-col gap-[9px]">

@@ -19,7 +19,11 @@ const { profile } = Astro.props
   </div>
 
   <div data-2col class="grid grid-cols-[1.55fr_1fr] items-start gap-6">
-    <div data-reveal data-card class="glass rounded-(--card-radius-lg) px-9 py-[34px]">
+    <div
+      data-reveal
+      data-card
+      class="glass rounded-(--card-radius-lg) px-5 py-7 sm:px-9 sm:py-[34px]"
+    >
       {
         profile.bio.map((paragraph, i) => (
           <p

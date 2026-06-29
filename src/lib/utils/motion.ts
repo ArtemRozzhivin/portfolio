@@ -53,7 +53,48 @@ function setupMagnetic() {
   })
 }
 
+function setupTimeline() {
+  const container = document.querySelector<HTMLElement>('[data-tl]')
+  const spine = container?.querySelector<HTMLElement>('[data-tl-spine]')
+  if (!container || !spine || container.dataset.tlReady) return
+  container.dataset.tlReady = 'true'
+
+  const rows = [...container.querySelectorAll<HTMLElement>('[data-tl-row]')]
+
+  if (prefersReducedMotion()) {
+    container.style.setProperty('--tl-progress', '1')
+    rows.forEach((row) => row.classList.add('is-active'))
+    return
+  }
+
+  let raf = 0
+  const update = () => {
+    raf = 0
+    const rect = spine.getBoundingClientRect()
+    const anchor = window.innerHeight * 0.62
+    const progress = Math.min(1, Math.max(0, (anchor - rect.top) / rect.height))
+    container.style.setProperty('--tl-progress', progress.toFixed(4))
+
+    rows.forEach((row) => {
+      const node = row.querySelector<HTMLElement>('[data-tl-node]')
+      if (!node) return
+      const nodeRect = node.getBoundingClientRect()
+      const nodeCenter = (nodeRect.top + nodeRect.height / 2 - rect.top) / rect.height
+      row.classList.toggle('is-active', progress >= nodeCenter - 0.01)
+    })
+  }
+
+  const onScroll = () => {
+    if (!raf) raf = requestAnimationFrame(update)
+  }
+
+  update()
+  window.addEventListener('scroll', onScroll, { passive: true })
+  window.addEventListener('resize', onScroll)
+}
+
 export function initMotion() {
   setupReveal()
   setupMagnetic()
+  setupTimeline()
 }

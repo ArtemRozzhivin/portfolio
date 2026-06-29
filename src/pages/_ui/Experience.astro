@@ -21,12 +21,18 @@ const { experience } = Astro.props
     </h2>
   </div>
 
-  <div class="relative">
+  <div data-tl class="relative">
     <div
       data-tl-spine
       aria-hidden="true"
-      class="absolute top-[6px] bottom-[6px] left-1/2 w-0.5 -translate-x-1/2 bg-[linear-gradient(var(--accent),var(--line))]"
+      class="absolute top-[6px] bottom-[6px] left-1/2 w-0.5 -translate-x-1/2 overflow-hidden"
     >
+      <div class="bg-line absolute inset-0"></div>
+      <div
+        data-tl-fill
+        class="absolute inset-x-0 top-0 h-[calc(var(--tl-progress,0)*100%)] bg-[linear-gradient(var(--accent),var(--accent-2))]"
+      >
+      </div>
     </div>
 
     {
@@ -64,7 +70,7 @@ const { experience } = Astro.props
             data-tl-node
             aria-hidden="true"
             class:list={[
-              'absolute top-1/2 left-1/2 z-2 grid size-[46px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-4 border-(--page-base)',
+              'absolute top-1/2 left-1/2 z-2 grid size-[46px] place-items-center rounded-full border-4 border-(--page-base)',
               job.current
                 ? 'bg-accent text-accent-contrast shadow-(--card-shadow)'
                 : 'glass-2 text-accent',
