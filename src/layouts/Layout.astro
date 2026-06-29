@@ -1,10 +1,11 @@
 ---
 import '../styles/global.css'
-import '@fontsource-variable/nunito-sans'
 
 import { ClientRouter } from 'astro:transitions'
 
 import { siteConfig } from '@lib/config/site'
+import Header from '@components/layout/Header.astro'
+import ThemeScript from '@components/layout/ThemeScript.astro'
 
 interface Props {
   title?: string
@@ -26,12 +27,21 @@ const ogImageURL = new URL(ogImage, siteConfig.url)
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <ThemeScript />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- SEO -->
     <title>{pageTitle}</title>
@@ -58,7 +68,8 @@ const ogImageURL = new URL(ogImage, siteConfig.url)
     <ClientRouter />
   </head>
 
-  <body class="mx-auto min-h-screen max-w-screen-2xl bg-white text-black">
+  <body class="min-h-screen">
+    <Header />
     <slot />
   </body>
 </html>

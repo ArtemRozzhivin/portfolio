@@ -1,0 +1,168 @@
+---
+import type { Profile } from '@services/portfolio'
+import { siteConfig } from '@lib/config/site'
+import ArrowRightIcon from '@components/ui/icons/ArrowRightIcon.astro'
+import DownloadIcon from '@components/ui/icons/DownloadIcon.astro'
+import GithubIcon from '@components/ui/icons/GithubIcon.astro'
+import LinkedinIcon from '@components/ui/icons/LinkedinIcon.astro'
+import OptimizedImage from '@components/ui/OptimizedImage.astro'
+
+interface Props {
+  profile: Profile
+}
+
+const { profile } = Astro.props
+const [firstName, ...rest] = profile.name.split(' ')
+const lastName = rest.join(' ')
+
+const badgePositions = [
+  '-top-4 -left-10 animate-[floaty_5s_ease-in-out_infinite]',
+  'top-3.5 -right-[52px] animate-[floaty2_6.4s_ease-in-out_infinite]',
+  'bottom-[62px] -left-[54px] animate-[floaty_5.6s_ease-in-out_infinite]',
+  '-bottom-3.5 -right-[30px] animate-[floaty2_6s_ease-in-out_infinite]',
+  '-bottom-[18px] -left-2 animate-[floaty_6.8s_ease-in-out_infinite]',
+]
+---
+
+<section id="home" data-spy="home" class="flex min-h-screen items-center pt-[120px] pb-[70px]">
+  <div data-hero class="grid w-full grid-cols-[1.15fr_0.85fr] items-center gap-[54px]">
+    <div>
+      <div
+        data-card
+        data-reveal
+        class="glass mb-[26px] inline-flex items-center gap-[9px] rounded-full px-[14px] py-[7px]"
+      >
+        <span class="relative inline-flex h-2 w-2">
+          <span
+            class="absolute inset-0 animate-[pulsering_2.2s_ease-out_infinite] rounded-full bg-[#22c55e]"
+          ></span>
+          <span class="relative h-2 w-2 rounded-full bg-[#22c55e]"></span>
+        </span>
+        <span class="text-dim font-mono text-[11.5px] font-semibold tracking-[0.04em]">
+          {profile.availability}
+        </span>
+      </div>
+
+      <p
+        data-reveal
+        data-delay="60"
+        class="text-accent mb-2.5 font-mono text-[14px] font-semibold tracking-[0.02em]"
+      >
+        {profile.eyebrow}
+      </p>
+
+      <h1
+        data-hero-name
+        data-reveal
+        data-delay="120"
+        class="font-display text-ink mb-2 text-[clamp(52px,7.2vw,92px)] leading-[0.94] font-extrabold tracking-[-0.03em]"
+      >
+        {firstName}<br />{lastName}
+      </h1>
+
+      <h2
+        data-reveal
+        data-delay="180"
+        class="font-display text-dim mb-[22px] text-[clamp(20px,2.6vw,30px)] leading-[1.1] font-semibold tracking-[-0.01em]"
+      >
+        {profile.roleLead} · <span class="text-accent">{profile.roleAccent}</span>
+      </h2>
+
+      <p
+        data-reveal
+        data-delay="240"
+        class="text-dim mb-8 max-w-[52ch] text-[17.5px] leading-[1.62]"
+      >
+        {profile.intro}
+      </p>
+
+      <div data-reveal data-delay="300" class="flex flex-wrap items-center gap-[14px]">
+        <a
+          href="#contact"
+          data-magnetic
+          class="bg-accent text-accent-contrast inline-flex items-center gap-2.5 rounded-full px-[26px] py-[15px] text-[15.5px] font-bold shadow-[0_14px_32px_-12px_var(--accent)] transition-shadow hover:shadow-[0_18px_40px_-12px_var(--accent)]"
+        >
+          Contact me
+          <ArrowRightIcon class="size-[17px]" />
+        </a>
+
+        <a
+          href={siteConfig.cvUrl}
+          target="_blank"
+          rel="noopener"
+          data-magnetic
+          data-card
+          class="glass text-ink inline-flex items-center gap-2.5 rounded-full px-[24px] py-[14px] text-[15.5px] font-bold"
+        >
+          Download CV
+          <DownloadIcon class="size-4" />
+        </a>
+
+        <div class="flex gap-2">
+          <a
+            href={siteConfig.social.github}
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            data-card
+            class="glass text-ink grid size-12 place-items-center rounded-full"
+          >
+            <GithubIcon class="size-5" />
+          </a>
+          <a
+            href={siteConfig.social.linkedin}
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+            data-card
+            class="glass text-ink grid size-12 place-items-center rounded-full"
+          >
+            <LinkedinIcon class="size-[19px]" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      data-reveal
+      data-delay="200"
+      class="relative flex min-h-[340px] items-center justify-center"
+    >
+      <div class="relative w-full max-w-[264px]">
+        <div
+          aria-hidden="true"
+          class="absolute -inset-[14%] rounded-[30px] bg-[linear-gradient(140deg,var(--accent),var(--accent-2))] opacity-[0.22] blur-[10px]"
+        >
+        </div>
+
+        <div
+          data-card
+          class="glass-2 relative aspect-square overflow-hidden rounded-(--card-radius-lg)"
+        >
+          <OptimizedImage
+            src={profile.avatar}
+            alt={profile.name}
+            width={560}
+            loading="eager"
+            class="h-full w-full object-cover"
+          />
+        </div>
+
+        {
+          profile.badges.map((badge, i) => (
+            <div
+              data-card
+              class:list={[
+                'glass text-ink absolute inline-flex items-center gap-1.5 rounded-[12px] px-[13px] py-[9px] font-mono text-[11.5px] font-semibold whitespace-nowrap max-[424px]:hidden',
+                badgePositions[i],
+              ]}
+            >
+              <span class="text-accent font-bold">{badge.prefix}</span>
+              {badge.label}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

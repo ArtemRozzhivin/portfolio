@@ -1,10 +1,51 @@
 ---
+import { getExperience, getProfile, getProjects, getSkillGroups } from '@services/portfolio'
+import Footer from '@components/layout/Footer.astro'
 import Layout from '@layouts/Layout.astro'
+
+import About from './_ui/About.astro'
+import AmbientBlobs from './_ui/AmbientBlobs.astro'
+import Contact from './_ui/Contact.astro'
+import Experience from './_ui/Experience.astro'
+import Hero from './_ui/Hero.astro'
+import Projects from './_ui/Projects.astro'
+import Skills from './_ui/Skills.astro'
+
+const [profile, projects, skills, experience] = await Promise.all([
+  getProfile(),
+  getProjects(),
+  getSkillGroups(),
+  getExperience(),
+])
 ---
 
-<Layout title="My App" description="A modern web application built with Astro.">
-  <section class="container-wide mx-auto px-5 py-20 md:px-12">
-    <h1 class="text-5xl font-semibold tracking-tight text-gray-900">Welcome to My App</h1>
-    <p class="mt-4 text-lg text-gray-500">Start building your next project here.</p>
-  </section>
+<Layout>
+  <AmbientBlobs />
+  <main class="relative z-1 mx-auto max-w-[1160px] px-6">
+    <Hero profile={profile} />
+    <About profile={profile} />
+    <Projects projects={projects} />
+    <Skills skills={skills} />
+    <Experience experience={experience} />
+    <Contact />
+    <Footer />
+  </main>
+
+  <script>
+    import { initMotion } from '@lib/utils/motion'
+
+    const run = () => {
+      try {
+        initMotion()
+      } catch {
+        document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-revealed'))
+        document.querySelectorAll('[data-tl-row]').forEach((el) => el.classList.add('is-active'))
+        document
+          .querySelectorAll('[data-tl]')
+          .forEach((el) => el.style.setProperty('--tl-progress', '1'))
+      }
+    }
+
+    document.addEventListener('astro:page-load', run)
+  </script>
 </Layout>

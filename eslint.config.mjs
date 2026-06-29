@@ -7,7 +7,17 @@ import prettierConfig from './prettier.config.mjs'
 
 export default [
   {
-    ignores: ['dist/**', 'node_modules/**', '.astro/**', 'build/**', 'public/**', '.cache/**'],
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      '.astro/**',
+      '.vercel/**',
+      'build/**',
+      'public/**',
+      '.cache/**',
+      'temp/**',
+      'studio/**',
+    ],
   },
 
   ...eslintPluginAstro.configs['flat/recommended'],
@@ -68,6 +78,13 @@ export default [
     rules: {
       ...eslintPluginPrettier.rules,
       'prettier/prettier': ['error', prettierConfig],
+    },
+  },
+
+  {
+    files: ['**/*.astro/*.js', '**/*.astro/*.ts', '*.astro/*.js', '*.astro/*.ts'],
+    rules: {
+      'prettier/prettier': 'off',
     },
   },
 ]

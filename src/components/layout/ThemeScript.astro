@@ -1,0 +1,22 @@
+<script is:inline>
+  const applyJsFlag = () => document.documentElement.classList.add('js')
+
+  const applyStoredTheme = () => {
+    try {
+      const stored = localStorage.getItem('theme')
+      document.documentElement.dataset.theme =
+        stored === 'light' || stored === 'dark'
+          ? stored
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+    } catch {}
+  }
+
+  applyJsFlag()
+  applyStoredTheme()
+  document.addEventListener('astro:after-swap', () => {
+    applyJsFlag()
+    applyStoredTheme()
+  })
+</script>

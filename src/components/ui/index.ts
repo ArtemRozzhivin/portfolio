@@ -1,2 +1,5 @@
 export * from './button'
 export * from './input'
+export * from './tag'
+export * from './textarea'
+export * from './theme-toggle'

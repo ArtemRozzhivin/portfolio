@@ -10,6 +10,10 @@ export default defineConfig({
 
   integrations: [react(), sitemap()],
 
+  image: {
+    remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io' }],
+  },
+
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'hover',

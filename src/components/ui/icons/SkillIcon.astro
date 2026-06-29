@@ -1,0 +1,54 @@
+---
+import type { SkillIcon } from '@services/portfolio'
+
+interface Props {
+  name: SkillIcon
+  class?: string
+}
+const { name, class: className } = Astro.props
+---
+
+<svg
+  class:list={['shrink-0', className]}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+>
+  {name === 'languages' && <path d="M8 6l-6 6 6 6M16 6l6 6-6 6" />}
+  {
+    name === 'frameworks' && (
+      <Fragment>
+        <path d="M12 2l9 5v10l-9 5-9-5V7z" />
+        <path d="M12 22V12M21 7l-9 5-9-5" />
+      </Fragment>
+    )
+  }
+  {
+    name === 'state' && (
+      <Fragment>
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+      </Fragment>
+    )
+  }
+  {
+    name === 'styling' && (
+      <Fragment>
+        <circle cx="13.5" cy="6.5" r="2.5" />
+        <circle cx="17.5" cy="12.5" r="2.5" />
+        <circle cx="8.5" cy="7.5" r="2.5" />
+        <circle cx="6.5" cy="13.5" r="2.5" />
+        <path d="M12 22a10 10 0 1 1 0-20 8 8 0 0 1 0 16 2 2 0 0 1 0-4" />
+      </Fragment>
+    )
+  }
+  {
+    name === 'tools' && (
+      <path d="M14.7 6.3a4 4 0 0 0-5.6 5.6l-6.4 6.4a2 2 0 1 0 2.8 2.8l6.4-6.4a4 4 0 0 0 5.6-5.6l-2.7 2.7-2.1-2.1z" />
+    )
+  }
+</svg>

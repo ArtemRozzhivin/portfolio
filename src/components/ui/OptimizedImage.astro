@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets'
+
+interface Props {
+  src: string
+  alt: string
+  width: number
+  class?: string
+  loading?: 'lazy' | 'eager'
+}
+
+const { src, alt, width, class: className, loading = 'lazy' } = Astro.props
+const isRemote = src.startsWith('http')
+---
+
+{
+  isRemote ? (
+    <Image src={src} alt={alt} inferSize width={width} class={className} loading={loading} />
+  ) : (
+    <img src={src} alt={alt} class={className} loading={loading} decoding="async" />
+  )
+}

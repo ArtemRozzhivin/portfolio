@@ -1,0 +1,48 @@
+---
+import { getAllTechs, getProjects } from '@services/portfolio'
+import { ProjectsExplorer } from '@components/islands/projects-explorer'
+import ArrowLeftIcon from '@components/ui/icons/ArrowLeftIcon.astro'
+import Layout from '@layouts/Layout.astro'
+
+const projects = await getProjects()
+const allTechs = getAllTechs(projects)
+---
+
+<Layout title="Projects" description="Projects I've built, contributed to, and brought to life.">
+  <main class="relative z-1 mx-auto max-w-[1100px] px-6 pt-[120px] pb-[70px]">
+    <a
+      href="/#projects"
+      data-magnetic
+      data-card
+      class="glass text-ink mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2.5 font-mono text-[13px] font-semibold"
+    >
+      <ArrowLeftIcon class="size-4" />
+      Back
+    </a>
+
+    <div class="mb-[30px]">
+      <h1
+        class="font-display text-ink mb-2.5 text-[clamp(40px,6vw,68px)] font-extrabold tracking-[-0.03em]"
+      >
+        My Projects
+      </h1>
+      <p class="text-dim text-[17px]">
+        A collection of projects I've built, contributed to, and brought to life.
+      </p>
+    </div>
+
+    <ProjectsExplorer client:load projects={projects} allTechs={allTechs} />
+  </main>
+
+  <script>
+    import { initMotion } from '@lib/utils/motion'
+
+    document.addEventListener('astro:page-load', () => {
+      try {
+        initMotion()
+      } catch {
+        /* magnetic is non-critical */
+      }
+    })
+  </script>
+</Layout>
