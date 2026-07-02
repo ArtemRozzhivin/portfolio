@@ -3,6 +3,7 @@ export const PROJECTS_QUERY = `*[_type == "project"] | order(order asc){
   name,
   description,
   "image": image.asset->url,
+  "lqip": image.asset->metadata.lqip,
   stack,
   "links": { "github": githubUrl, "preview": previewUrl }
 }`
@@ -31,9 +32,11 @@ export const PROFILE_QUERY = `*[_type == "profile"][0]{
   roleAccent,
   eyebrow,
   availability,
+  cvUrl,
   intro,
   bio,
   facts,
   badges,
-  "avatar": avatar.asset->url
+  "avatar": avatar.asset->url,
+  "avatarLqip": avatar.asset->metadata.lqip
 }`

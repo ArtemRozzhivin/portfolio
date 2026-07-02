@@ -40,7 +40,7 @@ export const siteConfig = {
     email: 'artiomrozzhyvin@gmail.com',
   },
 
-  cvUrl: 'https://drive.google.com/file/d/14F_FG34a9RStijTHu4KGtQ91jDoTdUr0/view',
+  cvUrl: 'https://drive.google.com/file/d/1mFCk8EQHdVk25NeMiPvqRNxTWUgK92DD/view?usp=sharing',
 
   footer: {
     copyright: `© ${new Date().getFullYear()} Artem Rozzhyvin — All rights reserved.`,

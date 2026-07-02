@@ -7,15 +7,29 @@ interface Props {
   width: number
   class?: string
   loading?: 'lazy' | 'eager'
+  lqip?: string
 }
 
-const { src, alt, width, class: className, loading = 'lazy' } = Astro.props
+const { src, alt, width, class: className, loading = 'lazy', lqip } = Astro.props
 const isRemote = src.startsWith('http')
 ---
 
 {
   isRemote ? (
-    <Image src={src} alt={alt} inferSize width={width} class={className} loading={loading} />
+    <div
+      class="relative h-full w-full overflow-hidden bg-cover bg-center"
+      style={lqip ? `background-image:url('${lqip}')` : undefined}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        inferSize
+        width={width}
+        loading={loading}
+        data-blur-up
+        class:list={[className]}
+      />
+    </div>
   ) : (
     <img src={src} alt={alt} class={className} loading={loading} decoding="async" />
   )

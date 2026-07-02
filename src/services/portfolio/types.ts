@@ -8,6 +8,7 @@ export interface Project {
   name: string
   description: string
   image: string
+  lqip?: string
   stack: string[]
   links: ProjectLinks
 }
@@ -48,9 +49,11 @@ export interface Profile {
   roleAccent: string
   eyebrow: string
   availability: string
+  cvUrl?: string
   intro: string
   bio: string[]
   facts: Fact[]
   badges: HeroBadge[]
   avatar: string
+  avatarLqip?: string
 }
