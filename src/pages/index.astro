@@ -43,6 +43,9 @@ const [profile, projects, skills, experience] = await Promise.all([
         document
           .querySelectorAll('[data-tl]')
           .forEach((el) => el.style.setProperty('--tl-progress', '1'))
+        document
+          .querySelectorAll('img[data-blur-up]')
+          .forEach((el) => el.classList.add('is-loaded'))
       }
     }
 

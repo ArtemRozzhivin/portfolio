@@ -87,7 +87,7 @@ const badgePositions = [
         </a>
 
         <a
-          href={siteConfig.cvUrl}
+          href={profile.cvUrl || siteConfig.cvUrl}
           target="_blank"
           rel="noopener"
           data-magnetic
@@ -144,6 +144,7 @@ const badgePositions = [
             alt={profile.name}
             width={560}
             loading="eager"
+            lqip={profile.avatarLqip}
             class="h-full w-full object-cover"
           />
         </div>

@@ -93,8 +93,23 @@ function setupTimeline() {
   window.addEventListener('resize', onScroll)
 }
 
+function setupBlurUp() {
+  document
+    .querySelectorAll<HTMLImageElement>('img[data-blur-up]:not(.is-loaded)')
+    .forEach((img) => {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('is-loaded')
+        return
+      }
+      const reveal = () => img.classList.add('is-loaded')
+      img.addEventListener('load', reveal, { once: true })
+      img.addEventListener('error', reveal, { once: true })
+    })
+}
+
 export function initMotion() {
   setupReveal()
   setupMagnetic()
   setupTimeline()
+  setupBlurUp()
 }

@@ -10,6 +10,7 @@ export const profile = defineType({
     defineField({ name: 'roleAccent', title: 'Role highlight', type: 'string' }),
     defineField({ name: 'eyebrow', type: 'string' }),
     defineField({ name: 'availability', type: 'string' }),
+    defineField({ name: 'cvUrl', title: 'CV URL', type: 'url' }),
     defineField({ name: 'intro', type: 'text', rows: 3 }),
     defineField({ name: 'bio', type: 'array', of: [{ type: 'text', rows: 3 }] }),
     defineField({

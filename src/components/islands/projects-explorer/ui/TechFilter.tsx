@@ -49,7 +49,7 @@ export function TechFilter({ techs, selected, onToggle, onClear }: TechFilterPro
           data-card
           role="listbox"
           aria-multiselectable="true"
-          className="glass-2 absolute top-[calc(100%+8px)] left-0 z-20 w-full rounded-2xl p-2 sm:right-0 sm:left-auto sm:w-[230px]"
+          className="glass-solid absolute top-[calc(100%+8px)] left-0 z-20 w-full rounded-2xl p-2 sm:right-0 sm:left-auto sm:w-[230px]"
         >
           <button
             type="button"
