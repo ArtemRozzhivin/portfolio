@@ -55,35 +55,44 @@ export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) 
               data-card
               className="glass flex flex-col overflow-hidden rounded-(--card-radius-lg)"
             >
-              <div className="h-[200px] shrink-0 overflow-hidden">
+              <div
+                className="aspect-video shrink-0 overflow-hidden bg-cover bg-center"
+                style={project.lqip ? { backgroundImage: `url('${project.lqip}')` } : undefined}
+              >
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="h-full w-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <div className="flex flex-1 flex-col px-6 py-[22px]">
                 <div className="mb-2.5 flex items-center justify-between gap-2.5">
                   <h3 className="font-display text-ink text-[22px] font-bold">{project.name}</h3>
                   <div className="flex shrink-0 gap-[7px]">
-                    <a
-                      href={project.links.github}
-                      target="_blank"
-                      rel="noopener"
-                      aria-label={`${project.name} GitHub repository`}
-                      className="bg-tag-bg text-ink border-tag-border grid size-[34px] place-items-center rounded-[9px] border"
-                    >
-                      <Github className="size-4" />
-                    </a>
-                    <a
-                      href={project.links.preview}
-                      target="_blank"
-                      rel="noopener"
-                      aria-label={`${project.name} live demo`}
-                      className="bg-accent text-accent-contrast grid size-[34px] place-items-center rounded-[9px]"
-                    >
-                      <ExternalLink className="size-[15px]" />
-                    </a>
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener"
+                        aria-label={`${project.name} GitHub repository`}
+                        className="bg-tag-bg text-ink border-tag-border grid size-[34px] place-items-center rounded-[9px] border"
+                      >
+                        <Github className="size-4" />
+                      </a>
+                    )}
+                    {project.links.preview && (
+                      <a
+                        href={project.links.preview}
+                        target="_blank"
+                        rel="noopener"
+                        aria-label={`${project.name} live demo`}
+                        className="bg-accent text-accent-contrast grid size-[34px] place-items-center rounded-[9px]"
+                      >
+                        <ExternalLink className="size-[15px]" />
+                      </a>
+                    )}
                   </div>
                 </div>
                 <p className="text-dim mb-4 flex-1 text-[14.5px] leading-[1.58]">

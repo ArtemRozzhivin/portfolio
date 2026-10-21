@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Artem Rozzhyvin',
   description:
-    'Frontend developer with 2+ years of experience building fast, accessible web apps with React, Next.js and TypeScript.',
+    'Full-stack developer with 4 years of experience building production web apps, SaaS products and MVPs with Next.js, Node.js, NestJS and PostgreSQL.',
   url: 'https://artem.dev',
   ogImage: '/og.png',
 
@@ -13,10 +13,14 @@ export const siteConfig = {
 
   keywords: [
     'Artem Rozzhyvin',
-    'Frontend Developer',
+    'Full-Stack Developer',
     'React',
     'Next.js',
+    'Node.js',
+    'NestJS',
+    'PostgreSQL',
     'TypeScript',
+    'SaaS',
     'Portfolio',
   ],
 

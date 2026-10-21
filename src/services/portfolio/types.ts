@@ -1,6 +1,6 @@
 export interface ProjectLinks {
-  github: string
-  preview: string
+  github?: string | null
+  preview?: string | null
 }
 
 export interface Project {
@@ -13,7 +13,14 @@ export interface Project {
   links: ProjectLinks
 }
 
-export type SkillIcon = 'languages' | 'frameworks' | 'state' | 'styling' | 'tools'
+export type SkillIcon =
+  | 'languages'
+  | 'frameworks'
+  | 'state'
+  | 'styling'
+  | 'tools'
+  | 'integrations'
+  | 'performance'
 
 export interface SkillGroup {
   title: string

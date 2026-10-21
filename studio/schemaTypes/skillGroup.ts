@@ -10,7 +10,15 @@ export const skillGroup = defineType({
       name: 'icon',
       type: 'string',
       options: {
-        list: ['languages', 'frameworks', 'state', 'styling', 'tools'],
+        list: [
+          'languages',
+          'frameworks',
+          'state',
+          'styling',
+          'tools',
+          'integrations',
+          'performance',
+        ],
       },
     }),
     defineField({ name: 'skills', type: 'array', of: [{ type: 'string' }] }),

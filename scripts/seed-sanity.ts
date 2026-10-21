@@ -40,6 +40,7 @@ async function run() {
     roleAccent: profile.roleAccent,
     eyebrow: profile.eyebrow,
     availability: profile.availability,
+    cvUrl: profile.cvUrl,
     intro: profile.intro,
     bio: profile.bio,
     facts: profile.facts.map((fact, i) => ({ _key: `fact-${i}`, ...fact })),

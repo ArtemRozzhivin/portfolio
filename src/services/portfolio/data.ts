@@ -2,6 +2,35 @@ import type { ExperienceEntry, Profile, Project, SkillGroup } from './types'
 
 export const projects: Project[] = [
   {
+    id: 'estate-x',
+    name: 'estate.x',
+    description:
+      "A two-sided marketplace for estate sales. A seller photographs a whole room and AI turns the photos into separate, priced listings — with split, merge and re-crop tools to fix whatever the AI got wrong. Buyers browse sales on a clustered map, search in plain language and check out with Stripe. As frontend lead I owned the backlog and flow analysis, built the AI review, create-sale wizard and marketplace UI, and reviewed the team's PRs.",
+    image: '/assets/estate-x.jpg',
+    stack: ['Next.js', 'React', 'TypeScript', 'RTK Query', 'Stripe', 'AI'],
+    links: {},
+  },
+  {
+    id: 'reserva',
+    name: 'Reserva API',
+    description:
+      'An event ticket booking API that never oversells: when many users rush the last seat, exactly one booking wins — enforced by a database lock and proven by a test firing simultaneous bookings. Email and Google login with refresh-token rotation, timed seat holds that auto-release, Redis caching, rate limiting and OpenAPI docs. Sole developer — API design, data modeling, auth and deployment.',
+    image: '/assets/reserva.jpg',
+    stack: ['Node.js', 'TypeScript', 'Bun', 'Express', 'PostgreSQL', 'Prisma', 'Redis', 'Docker'],
+    links: {
+      github: 'https://github.com/ArtemRozzhivin/reserva-api',
+    },
+  },
+  {
+    id: 'idesn',
+    name: 'iDesn',
+    description:
+      'An MVP of a no-code SaaS platform that lets dental clinics build and launch their own website through a guided questionnaire with a live preview — then edit content, subscribe, register a domain and deploy from one dashboard. I built the frontend: a multi-step form engine, a live editor with device preview, AI-assisted text, Google/JWT auth and Stripe payments.',
+    image: '/assets/idesn.jpg',
+    stack: ['Next.js', 'React', 'TypeScript', 'Chakra UI', 'Stripe', 'OAuth', 'AI'],
+    links: {},
+  },
+  {
     id: 'handyman-landing',
     name: 'Handyman Landing',
     description:
@@ -40,31 +69,106 @@ export const projects: Project[] = [
 ]
 
 export const skillGroups: SkillGroup[] = [
-  { title: 'Languages', icon: 'languages', skills: ['HTML', 'CSS', 'JavaScript', 'TypeScript'] },
-  { title: 'Frameworks', icon: 'frameworks', skills: ['React', 'Next.js', 'Node.js', 'Nest.js'] },
-  { title: 'State & Data', icon: 'state', skills: ['Redux Toolkit', 'Zustand', 'React Query'] },
-  { title: 'Styling & Motion', icon: 'styling', skills: ['Tailwind CSS', 'Framer Motion'] },
+  { title: 'Languages', icon: 'languages', skills: ['TypeScript', 'JavaScript', 'HTML', 'CSS'] },
   {
-    title: 'Tools & Cloud',
+    title: 'Frontend',
+    icon: 'frameworks',
+    skills: ['React', 'Next.js', 'Astro', 'Redux Toolkit', 'TanStack Query', 'Zustand'],
+  },
+  {
+    title: 'Styling & Motion',
+    icon: 'styling',
+    skills: ['Tailwind CSS', 'SCSS/SASS', 'Chakra UI', 'Emotion', 'Framer Motion'],
+  },
+  {
+    title: 'Backend & Data',
+    icon: 'state',
+    skills: [
+      'Node.js',
+      'NestJS',
+      'Express',
+      'Bun',
+      'PostgreSQL',
+      'Prisma',
+      'Redis',
+      'Supabase',
+      'REST APIs',
+    ],
+    wide: true,
+  },
+  {
+    title: 'CMS & Integrations',
+    icon: 'integrations',
+    skills: ['Sanity', 'Prismic', 'Stripe', 'OAuth & JWT', 'Google Maps', 'Leaflet', 'i18n'],
+  },
+  {
+    title: 'SEO & Performance',
+    icon: 'performance',
+    skills: ['Core Web Vitals', 'Technical SEO', 'Page Speed'],
+  },
+  {
+    title: 'DevOps & Tools',
     icon: 'tools',
-    skills: ['Git', 'AWS', 'ESLint', 'Prettier'],
+    skills: [
+      'Docker',
+      'GitHub Actions',
+      'nginx',
+      'Vercel',
+      'Netlify',
+      'AWS',
+      'IONOS',
+      'Git',
+      'Claude Code',
+    ],
     wide: true,
   },
 ]
 
 export const experience: ExperienceEntry[] = [
   {
-    id: 'come-back-agency',
-    role: 'Frontend Developer',
-    company: 'Come Back Agency',
-    meta: 'Full-time · Remote',
-    period: 'Sept 2024 — Present',
+    id: 'upwork-freelance',
+    role: 'Full-Stack Developer',
+    company: 'Upwork',
+    meta: 'Freelance · Remote',
+    period: 'Oct 2026 — Present',
     note: 'Current role',
     current: true,
     bullets: [
-      'Built projects of varying complexity — from corporate sites to advanced SPA applications.',
-      'Developed new pages and interactive UI, extending app functionality to customer requirements.',
-      'Optimized component performance, debugged for stability, and ensured responsive mobile-first layouts.',
+      'Build SaaS products, MVPs and web apps end to end — auth and roles, dashboards, marketplaces, admin panels, Stripe payments and third-party API integrations.',
+      'Design REST APIs with Node.js (NestJS, Express), PostgreSQL data models and Redis caching.',
+      'Take over existing projects — fixing bugs, cleaning up messy or AI-generated code and getting apps ready for real users.',
+      'Migrate websites to Astro or Next.js with a headless CMS (Sanity, Prismic), tuned for Core Web Vitals and technical SEO.',
+    ],
+  },
+  {
+    id: 'softdoes-team-lead',
+    role: 'Frontend Team Lead',
+    company: 'SoftDoes',
+    meta: 'Full-time · Remote',
+    period: 'Jul 2025 — Sept 2026',
+    note: '1 yr 3 mos',
+    current: false,
+    bullets: [
+      'Promoted from Frontend Developer to lead the frontend team while staying hands-on — building and shipping client projects in React, Next.js and Astro.',
+      'Led a team of up to 4 React developers across CMS-driven corporate sites, custom business web apps, marketplaces and admin tools with analytics dashboards.',
+      'Introduced an AI-assisted development workflow with Claude Code, including automated PR reviews — cutting review time by ~10–20%.',
+      'Built standardized React and Astro project templates, reducing project setup from a day to an hour.',
+      'Owned estimation, backlog management, code review and coding standards, plus hiring interviews and developer growth plans.',
+    ],
+  },
+  {
+    id: 'softdoes',
+    role: 'Frontend Developer',
+    company: 'SoftDoes',
+    meta: 'Full-time · Remote',
+    period: 'Sept 2024 — Jul 2025',
+    note: '11 months',
+    current: false,
+    bullets: [
+      'Built custom React and Next.js applications for clients across diverse industries at a web development agency.',
+      'Integrated Stripe payments, maps and AI-powered backend services into production React and Next.js apps.',
+      'Connected front ends to REST APIs and third-party services, delivering fully working, production-ready features.',
+      'Set up CI/CD pipelines with GitHub Actions and Docker, deploying to VPS with nginx, domain and SSL configuration.',
     ],
   },
   {
@@ -76,38 +180,54 @@ export const experience: ExperienceEntry[] = [
     note: '7 months',
     current: false,
     bullets: [
-      'Developed user-friendly web applications in a cross-functional team of developers and designers.',
-      'Built reusable components and integrated REST APIs to ship features on schedule.',
-      'Collaborated closely on UI/UX implementation, focusing on clean, responsive interfaces.',
+      'Built responsive, pixel-accurate UI from Figma designs in React and TypeScript for a proptech web application ahead of launch.',
+      'Turned mockups into working, API-connected interfaces, collaborating closely with designers and backend developers.',
+      "Reviewed teammates' pull requests and fixed bugs, helping maintain code quality across the team.",
+      'Styled with Emotion CSS and managed application state with Redux.',
+    ],
+  },
+  {
+    id: 'swetrix',
+    role: 'Frontend Developer',
+    company: 'Swetrix',
+    meta: 'Remote',
+    period: 'Sept 2022 — Oct 2023',
+    note: '1 yr 2 mos',
+    current: false,
+    bullets: [
+      'Built the analytics dashboard UI for an open-source, privacy-focused Google Analytics alternative — real-time stats, interactive filters and data tables that stay fast on large datasets.',
+      'Developed charts and data visualizations that turn raw analytics into clear, readable insights.',
+      'Shipped new features into an existing production codebase and fixed bugs across the app, improving stability and UX.',
     ],
   },
 ]
 
 export const profile: Profile = {
   name: 'Artem Rozzhyvin',
-  roleLead: 'Frontend Developer',
-  roleAccent: 'React & Next.js',
+  roleLead: 'Full-Stack Developer',
+  roleAccent: 'Next.js & Node.js',
   eyebrow: '<hello world />',
-  availability: 'OPEN TO OPPORTUNITIES',
+  availability: 'AVAILABLE FOR NEW PROJECTS',
+  cvUrl: 'https://drive.google.com/file/d/1mFCk8EQHdVk25NeMiPvqRNxTWUgK92DD/view?usp=sharing',
   intro:
-    "I'm a frontend developer with 2+ years of experience, focused on React & Next.js. I love crafting fast, accessible websites and web apps that deliver genuinely great user experiences.",
+    "I'm a full-stack developer with 4 years of building production web apps, SaaS products and MVPs — React, Next.js, Node.js, NestJS and PostgreSQL, from database and API to a fast, responsive UI.",
   bio: [
-    "Hi, I'm Artem — a passionate front-end developer from Ukraine with a deep interest in everything related to technology and software development. My journey into programming started with a strong curiosity about how digital products work, and over time it evolved into a full-fledged career.",
-    "While my core expertise lies in front-end development — particularly React, Next.js and TypeScript — I'm also actively expanding into backend technologies including Node.js, NestJS and various cloud solutions. What excites me most is problem-solving: finding elegant solutions, optimizing products, and continuously improving both my skills and the user experience.",
-    "I'm always open to new challenges, exciting projects, and opportunities to collaborate. If you're looking for someone who loves crafting high-quality digital solutions — let's connect.",
+    "Hi, I'm Artem — a full-stack developer from Ukraine. For two years I worked at SoftDoes, a web development agency, where I grew from Frontend Developer to Team Lead: leading a team of up to four React developers while still building and shipping client projects myself.",
+    'Today I work across the whole stack — React, Next.js and Astro on the frontend; Node.js, NestJS, PostgreSQL and Redis on the backend. I build SaaS products and MVPs, design REST APIs, take over existing codebases and migrate websites to fast, CMS-driven stacks.',
+    "As a team lead, every bug and every deadline was mine to answer for — and I work the same way for clients: a clear plan before I start, regular updates, problems raised early with a solution, and clean, documented code that's fully yours. Tell me what you're building, and I'll tell you how I'd approach it.",
   ],
   facts: [
-    { label: 'LOCATION', value: 'Ukraine · Remote' },
-    { label: 'FOCUS', value: 'React · Next.js · TypeScript' },
-    { label: 'EXPLORING', value: 'Node.js · NestJS · Cloud · AI' },
-    { label: 'BEYOND CODE', value: 'Family · Travel · Psychology books' },
+    { label: 'LOCATION', value: 'Cluj-Napoca, Romania · Remote' },
+    { label: 'FOCUS', value: 'Next.js · Node.js · NestJS · PostgreSQL' },
+    { label: 'EDUCATION', value: 'BSc Computer Science · NAU Kyiv' },
+    { label: 'EXPLORING', value: 'AI tooling · New frameworks' },
   ],
   badges: [
-    { prefix: '</>', label: 'React' },
-    { prefix: 'TS', label: 'TypeScript' },
     { prefix: '▲', label: 'Next.js' },
-    { prefix: '2+', label: 'yrs exp' },
-    { prefix: '•', label: 'Ukraine · Remote' },
+    { prefix: '◆', label: 'NestJS' },
+    { prefix: 'TS', label: 'TypeScript' },
+    { prefix: '4+', label: 'yrs exp' },
+    { prefix: '•', label: 'Romania · Remote' },
   ],
   avatar: '/assets/avatar.jpeg',
 }

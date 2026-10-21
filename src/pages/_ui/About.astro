@@ -18,7 +18,7 @@ const { profile } = Astro.props
     </h2>
   </div>
 
-  <div data-2col class="grid grid-cols-[1.55fr_1fr] items-start gap-6">
+  <div data-2col class="grid grid-cols-[1.55fr_1fr] items-stretch gap-6">
     <div
       data-reveal
       data-card
@@ -41,7 +41,10 @@ const { profile } = Astro.props
     <div data-reveal data-delay="90" class="flex flex-col gap-3.5">
       {
         profile.facts.map((fact) => (
-          <div data-card class="glass rounded-(--card-radius) px-[22px] py-5">
+          <div
+            data-card
+            class="glass flex flex-1 flex-col justify-center rounded-(--card-radius) px-[22px] py-5"
+          >
             <p class="text-faint mb-1.5 font-mono text-[11px] tracking-[0.06em]">{fact.label}</p>
             <p class="text-ink text-[16px] font-semibold">{fact.value}</p>
           </div>
