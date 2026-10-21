@@ -4,6 +4,7 @@ export const PROJECTS_QUERY = `*[_type == "project"] | order(order asc){
   description,
   "image": image.asset->url,
   "lqip": image.asset->metadata.lqip,
+  "gallery": coalesce(gallery[]{ "src": asset->url, "lqip": asset->metadata.lqip }, []),
   stack,
   "links": { "github": githubUrl, "preview": previewUrl }
 }`

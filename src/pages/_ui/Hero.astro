@@ -16,11 +16,11 @@ const [firstName, ...rest] = profile.name.split(' ')
 const lastName = rest.join(' ')
 
 const badgePositions = [
-  '-top-4 -left-10 animate-[floaty_5s_ease-in-out_infinite]',
-  'top-3.5 -right-[52px] animate-[floaty2_6.4s_ease-in-out_infinite]',
-  'bottom-[62px] -left-[54px] animate-[floaty_5.6s_ease-in-out_infinite]',
-  '-bottom-3.5 -right-[30px] animate-[floaty2_6s_ease-in-out_infinite]',
-  '-bottom-[18px] -left-2 animate-[floaty_6.8s_ease-in-out_infinite]',
+  'top-5 -left-2 animate-[floaty_5s_ease-in-out_infinite]',
+  'top-10 -right-6 animate-[floaty2_6.4s_ease-in-out_infinite]',
+  'bottom-[86px] -left-[54px] animate-[floaty_5.6s_ease-in-out_infinite]',
+  'bottom-6 -right-8 animate-[floaty2_6s_ease-in-out_infinite]',
+  '-bottom-3 left-6 animate-[floaty_6.8s_ease-in-out_infinite]',
 ]
 ---
 
@@ -126,23 +126,20 @@ const badgePositions = [
     <div
       data-reveal
       data-delay="200"
-      class="relative flex min-h-[340px] items-center justify-center"
+      class="relative flex min-h-[400px] items-center justify-center"
     >
-      <div class="relative w-full max-w-[264px]">
+      <div class="relative w-full max-w-[340px]">
         <div
           aria-hidden="true"
-          class="absolute -inset-[14%] rounded-[30px] bg-[linear-gradient(140deg,var(--accent),var(--accent-2))] opacity-[0.22] blur-[10px]"
+          class="absolute -inset-[10%] rounded-full bg-[linear-gradient(140deg,var(--accent),var(--accent-2))] opacity-[0.22] blur-[10px]"
         >
         </div>
 
-        <div
-          data-card
-          class="glass-2 relative aspect-square overflow-hidden rounded-(--card-radius-lg)"
-        >
+        <div data-card class="glass-2 relative aspect-square overflow-hidden rounded-full">
           <OptimizedImage
             src={profile.avatar}
             alt={profile.name}
-            width={560}
+            width={720}
             loading="eager"
             lqip={profile.avatarLqip}
             class="h-full w-full object-cover"

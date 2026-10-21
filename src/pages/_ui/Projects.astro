@@ -1,8 +1,10 @@
 ---
 import type { Project } from '@services/portfolio'
+import { ProjectModalHost } from '@components/islands/project-modal'
 import ArrowRightIcon from '@components/ui/icons/ArrowRightIcon.astro'
 import ExternalLinkIcon from '@components/ui/icons/ExternalLinkIcon.astro'
 import GithubIcon from '@components/ui/icons/GithubIcon.astro'
+import ImagesIcon from '@components/ui/icons/ImagesIcon.astro'
 import OptimizedImage from '@components/ui/OptimizedImage.astro'
 
 interface Props {
@@ -10,7 +12,9 @@ interface Props {
 }
 
 const { projects } = Astro.props
-const [feature, ...stacked] = projects
+const featured = projects.slice(0, 3)
+const [feature, ...stacked] = featured
+const photoCount = (project: Project) => project.gallery?.length ?? 0
 ---
 
 <section id="projects" data-spy="projects" class="py-20">
@@ -34,49 +38,77 @@ const [feature, ...stacked] = projects
     </a>
   </div>
 
-  <div data-bento class="grid auto-rows-fr grid-cols-12 gap-[18px]">
+  <div data-bento class="grid grid-cols-12 gap-[18px]">
     <article
       data-reveal
       data-card
-      class="glass col-span-7 row-span-2 flex flex-col overflow-hidden rounded-(--card-radius-lg)"
+      data-2col
+      class="glass group relative col-span-12 grid grid-cols-[1.4fr_1fr] overflow-hidden rounded-(--card-radius-lg)"
     >
-      <div class="h-[300px] shrink-0 overflow-hidden">
+      <button
+        type="button"
+        data-project-open={feature.id}
+        aria-label={`Open ${feature.name} details`}
+        class="focus-visible:outline-accent absolute inset-0 z-1 cursor-pointer rounded-[inherit] focus-visible:outline-2 focus-visible:-outline-offset-2"
+      >
+      </button>
+      <div class="relative aspect-video overflow-hidden">
         <OptimizedImage
           src={feature.image}
           alt={feature.name}
           width={1100}
           lqip={feature.lqip}
-          class="h-full w-full object-cover object-top"
+          class="h-full w-full object-contain"
         />
+        {
+          photoCount(feature) > 1 && (
+            <span class="glass text-ink pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11.5px] font-semibold">
+              <ImagesIcon class="size-3.5" />
+              {photoCount(feature)}
+            </span>
+          )
+        }
       </div>
-      <div class="flex flex-1 flex-col px-7 pt-[26px] pb-7">
+      <div class="flex flex-col px-7 pt-[26px] pb-7">
         <div class="mb-3 flex items-start justify-between gap-3.5">
-          <h3 class="font-display text-ink text-[25px] font-bold tracking-[-0.01em]">
+          <h3
+            class="font-display text-ink group-hover:text-accent text-[25px] font-bold tracking-[-0.01em] transition-colors"
+          >
             {feature.name}
           </h3>
-          <div class="flex shrink-0 gap-2">
-            <a
-              href={feature.links.github}
-              target="_blank"
-              rel="noopener"
-              aria-label={`${feature.name} GitHub repository`}
-              class="bg-tag-bg text-ink border-tag-border grid size-[38px] place-items-center rounded-[11px] border"
-            >
-              <GithubIcon class="size-[17px]" />
-            </a>
-            <a
-              href={feature.links.preview}
-              target="_blank"
-              rel="noopener"
-              aria-label={`${feature.name} live demo`}
-              class="bg-accent text-accent-contrast grid size-[38px] place-items-center rounded-[11px]"
-            >
-              <ExternalLinkIcon class="size-4" />
-            </a>
+          <div class="relative z-2 flex shrink-0 gap-2">
+            {
+              feature.links.github && (
+                <a
+                  href={feature.links.github}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${feature.name} GitHub repository`}
+                  class="bg-tag-bg text-ink border-tag-border grid size-[38px] place-items-center rounded-[11px] border"
+                >
+                  <GithubIcon class="size-[17px]" />
+                </a>
+              )
+            }
+            {
+              feature.links.preview && (
+                <a
+                  href={feature.links.preview}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${feature.name} live demo`}
+                  class="bg-accent text-accent-contrast grid size-[38px] place-items-center rounded-[11px]"
+                >
+                  <ExternalLinkIcon class="size-4" />
+                </a>
+              )
+            }
           </div>
         </div>
-        <p class="text-dim mb-[18px] flex-1 text-[15px] leading-[1.6]">{feature.description}</p>
-        <div class="flex flex-wrap gap-[7px]">
+        <p class="text-dim mb-[18px] line-clamp-6 text-[15px] leading-[1.6]">
+          {feature.description}
+        </p>
+        <div class="mt-auto flex flex-wrap gap-[7px]">
           {
             feature.stack.map((tech) => (
               <span class="bg-tag-bg text-tag-text border-tag-border rounded-full border px-[11px] py-[5px] font-mono text-[11px] font-medium tracking-[0.03em]">
@@ -94,45 +126,63 @@ const [feature, ...stacked] = projects
           data-reveal
           data-delay="80"
           data-card
-          class="glass col-span-5 flex flex-col overflow-hidden rounded-(--card-radius-lg)"
+          class="glass group relative col-span-6 flex flex-col overflow-hidden rounded-(--card-radius-lg)"
         >
-          <div class="h-[150px] shrink-0 overflow-hidden">
+          <button
+            type="button"
+            data-project-open={project.id}
+            aria-label={`Open ${project.name} details`}
+            class="focus-visible:outline-accent absolute inset-0 z-1 cursor-pointer rounded-[inherit] focus-visible:outline-2 focus-visible:-outline-offset-2"
+          />
+          <div class="relative aspect-video shrink-0 overflow-hidden">
             <OptimizedImage
               src={project.image}
               alt={project.name}
               width={760}
               lqip={project.lqip}
-              class="h-full w-full object-cover object-top"
+              class="h-full w-full object-contain"
             />
+            {photoCount(project) > 1 && (
+              <span class="glass text-ink pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold">
+                <ImagesIcon class="size-3" />
+                {photoCount(project)}
+              </span>
+            )}
           </div>
           <div class="flex flex-1 flex-col px-[22px] py-5">
-            <div class="mb-2 flex items-center justify-between gap-2.5">
-              <h3 class="font-display text-ink text-[20px] font-bold">{project.name}</h3>
-              <div class="flex shrink-0 gap-[7px]">
-                <a
-                  href={project.links.github}
-                  target="_blank"
-                  rel="noopener"
-                  aria-label={`${project.name} GitHub repository`}
-                  class="bg-tag-bg text-ink border-tag-border grid size-8 place-items-center rounded-[9px] border"
-                >
-                  <GithubIcon class="size-[15px]" />
-                </a>
-                <a
-                  href={project.links.preview}
-                  target="_blank"
-                  rel="noopener"
-                  aria-label={`${project.name} live demo`}
-                  class="bg-accent text-accent-contrast grid size-8 place-items-center rounded-[9px]"
-                >
-                  <ExternalLinkIcon class="size-3.5" />
-                </a>
+            <div class="mb-2 flex min-h-8 items-center justify-between gap-2.5">
+              <h3 class="font-display text-ink group-hover:text-accent text-[20px] font-bold transition-colors">
+                {project.name}
+              </h3>
+              <div class="relative z-2 flex shrink-0 gap-[7px]">
+                {project.links.github && (
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label={`${project.name} GitHub repository`}
+                    class="bg-tag-bg text-ink border-tag-border grid size-8 place-items-center rounded-[9px] border"
+                  >
+                    <GithubIcon class="size-[15px]" />
+                  </a>
+                )}
+                {project.links.preview && (
+                  <a
+                    href={project.links.preview}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label={`${project.name} live demo`}
+                    class="bg-accent text-accent-contrast grid size-8 place-items-center rounded-[9px]"
+                  >
+                    <ExternalLinkIcon class="size-3.5" />
+                  </a>
+                )}
               </div>
             </div>
-            <p class="text-dim mb-3.5 line-clamp-2 flex-1 text-[13.5px] leading-[1.55]">
+            <p class="text-dim mb-3.5 line-clamp-2 text-[13.5px] leading-[1.55]">
               {project.description}
             </p>
-            <div class="flex flex-wrap gap-1.5">
+            <div class="mt-auto flex flex-wrap gap-1.5">
               {project.stack.map((tech) => (
                 <span class="bg-tag-bg text-tag-text border-tag-border rounded-full border px-[9px] py-1 font-mono text-[10.5px] font-medium">
                   {tech}
@@ -144,4 +194,6 @@ const [feature, ...stacked] = projects
       ))
     }
   </div>
+
+  <ProjectModalHost client:idle projects={featured} />
 </section>

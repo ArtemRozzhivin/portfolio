@@ -58,28 +58,30 @@ export function TechFilter({ techs, selected, onToggle, onClear }: TechFilterPro
           >
             Clear filters
           </button>
-          {techs.map((tech) => {
-            const checked = selected.includes(tech)
-            return (
-              <button
-                key={tech}
-                type="button"
-                role="option"
-                aria-selected={checked}
-                onClick={() => onToggle(tech)}
-                className="text-ink hover:bg-tag-bg flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[14px] font-medium"
-              >
-                <span
-                  className={`grid size-[18px] shrink-0 place-items-center rounded-[6px] border-[1.5px] ${
-                    checked ? 'bg-accent border-accent text-accent-contrast' : 'border-tag-border'
-                  }`}
+          <div className="max-h-[312px] overflow-y-auto overscroll-contain">
+            {techs.map((tech) => {
+              const checked = selected.includes(tech)
+              return (
+                <button
+                  key={tech}
+                  type="button"
+                  role="option"
+                  aria-selected={checked}
+                  onClick={() => onToggle(tech)}
+                  className="text-ink hover:bg-tag-bg flex w-full items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-left text-[14px] font-medium"
                 >
-                  {checked && <Check className="size-3" strokeWidth={3.5} />}
-                </span>
-                {tech}
-              </button>
-            )
-          })}
+                  <span
+                    className={`grid size-[18px] shrink-0 place-items-center rounded-[6px] border-[1.5px] ${
+                      checked ? 'bg-accent border-accent text-accent-contrast' : 'border-tag-border'
+                    }`}
+                  >
+                    {checked && <Check className="size-3" strokeWidth={3.5} />}
+                  </span>
+                  {tech}
+                </button>
+              )
+            })}
+          </div>
         </div>
       )}
     </div>
