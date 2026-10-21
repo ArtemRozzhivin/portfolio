@@ -1,4 +1,9 @@
-import type { ExperienceEntry, Profile, Project, SkillGroup } from './types'
+import type { ExperienceEntry, Profile, Project, ProjectImage, SkillGroup } from './types'
+
+const shots = (id: string, count: number): ProjectImage[] =>
+  Array.from({ length: count }, (_, i) => ({
+    src: `/assets/projects/${id}/${String(i + 1).padStart(2, '0')}.jpg`,
+  }))
 
 export const projects: Project[] = [
   {
@@ -6,7 +11,8 @@ export const projects: Project[] = [
     name: 'estate.x',
     description:
       "A two-sided marketplace for estate sales. A seller photographs a whole room and AI turns the photos into separate, priced listings — with split, merge and re-crop tools to fix whatever the AI got wrong. Buyers browse sales on a clustered map, search in plain language and check out with Stripe. As frontend lead I owned the backlog and flow analysis, built the AI review, create-sale wizard and marketplace UI, and reviewed the team's PRs.",
-    image: '/assets/estate-x.jpg',
+    image: '/assets/projects/estate-x/01.jpg',
+    gallery: shots('estate-x', 13),
     stack: ['Next.js', 'React', 'TypeScript', 'RTK Query', 'Stripe', 'AI'],
     links: {},
   },
@@ -15,7 +21,8 @@ export const projects: Project[] = [
     name: 'Reserva API',
     description:
       'An event ticket booking API that never oversells: when many users rush the last seat, exactly one booking wins — enforced by a database lock and proven by a test firing simultaneous bookings. Email and Google login with refresh-token rotation, timed seat holds that auto-release, Redis caching, rate limiting and OpenAPI docs. Sole developer — API design, data modeling, auth and deployment.',
-    image: '/assets/reserva.jpg',
+    image: '/assets/projects/reserva/01.jpg',
+    gallery: shots('reserva', 5),
     stack: ['Node.js', 'TypeScript', 'Bun', 'Express', 'PostgreSQL', 'Prisma', 'Redis', 'Docker'],
     links: {
       github: 'https://github.com/ArtemRozzhivin/reserva-api',
@@ -26,7 +33,8 @@ export const projects: Project[] = [
     name: 'iDesn',
     description:
       'An MVP of a no-code SaaS platform that lets dental clinics build and launch their own website through a guided questionnaire with a live preview — then edit content, subscribe, register a domain and deploy from one dashboard. I built the frontend: a multi-step form engine, a live editor with device preview, AI-assisted text, Google/JWT auth and Stripe payments.',
-    image: '/assets/idesn.jpg',
+    image: '/assets/projects/idesn/01.jpg',
+    gallery: shots('idesn', 13),
     stack: ['Next.js', 'React', 'TypeScript', 'Chakra UI', 'Stripe', 'OAuth', 'AI'],
     links: {},
   },

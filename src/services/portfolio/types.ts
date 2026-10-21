@@ -3,12 +3,18 @@ export interface ProjectLinks {
   preview?: string | null
 }
 
+export interface ProjectImage {
+  src: string
+  lqip?: string
+}
+
 export interface Project {
   id: string
   name: string
   description: string
   image: string
   lqip?: string
+  gallery?: ProjectImage[]
   stack: string[]
   links: ProjectLinks
 }

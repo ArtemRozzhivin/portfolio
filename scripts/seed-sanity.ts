@@ -51,6 +51,10 @@ async function run() {
 
   for (const [i, project] of projects.entries()) {
     const image = await uploadImage(project.image)
+    const gallery = []
+    for (const [j, shot] of (project.gallery ?? []).entries()) {
+      gallery.push({ _key: `shot-${j}`, ...(await uploadImage(shot.src)) })
+    }
     await client.createOrReplace({
       _id: `project-${project.id}`,
       _type: 'project',
@@ -58,6 +62,7 @@ async function run() {
       slug: { _type: 'slug', current: project.id },
       description: project.description,
       image,
+      gallery,
       stack: project.stack,
       githubUrl: project.links.github,
       previewUrl: project.links.preview,

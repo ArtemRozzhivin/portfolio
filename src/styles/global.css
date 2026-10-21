@@ -151,6 +151,9 @@
     background: var(--page-base);
     overflow-x: clip;
   }
+  html:has(> body[data-scroll-locked]) {
+    overflow: hidden;
+  }
   body {
     min-height: 100vh;
     background: var(--page-bg);

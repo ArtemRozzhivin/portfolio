@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react'
-import { ExternalLink, Github, Search } from 'lucide-react'
+import { ExternalLink, Github, Images, Search } from 'lucide-react'
 
 import type { Project } from '@services/portfolio'
+import { imageUrl } from '@lib/utils/image'
+import { ProjectModal, useProjectModal } from '@components/islands/project-modal'
 
 import { filterProjects } from '../schema/filters'
 import { TechFilter } from './TechFilter'
@@ -14,6 +16,7 @@ interface ProjectsExplorerProps {
 export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) {
   const [search, setSearch] = useState('')
   const [selected, setSelected] = useState<string[]>([])
+  const modal = useProjectModal()
 
   const filtered = useMemo(
     () => filterProjects(projects, search, selected),
@@ -53,24 +56,38 @@ export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) 
             <article
               key={project.id}
               data-card
-              className="glass flex flex-col overflow-hidden rounded-(--card-radius-lg)"
+              className="glass group relative flex flex-col overflow-hidden rounded-(--card-radius-lg)"
             >
+              <button
+                type="button"
+                onClick={() => modal.show(project)}
+                aria-label={`Open ${project.name} details`}
+                className="focus-visible:outline-accent absolute inset-0 z-1 cursor-pointer rounded-[inherit] focus-visible:outline-2 focus-visible:-outline-offset-2"
+              />
               <div
-                className="aspect-video shrink-0 overflow-hidden bg-cover bg-center"
+                className="relative aspect-video shrink-0 overflow-hidden bg-cover bg-center"
                 style={project.lqip ? { backgroundImage: `url('${project.lqip}')` } : undefined}
               >
                 <img
-                  src={project.image}
+                  src={imageUrl(project.image, { w: 1100 })}
                   alt={project.name}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-contain"
                 />
+                {(project.gallery?.length ?? 0) > 1 && (
+                  <span className="glass text-ink pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11.5px] font-semibold">
+                    <Images className="size-3.5" />
+                    {project.gallery?.length}
+                  </span>
+                )}
               </div>
               <div className="flex flex-1 flex-col px-6 py-[22px]">
                 <div className="mb-2.5 flex items-center justify-between gap-2.5">
-                  <h3 className="font-display text-ink text-[22px] font-bold">{project.name}</h3>
-                  <div className="flex shrink-0 gap-[7px]">
+                  <h3 className="font-display text-ink group-hover:text-accent text-[22px] font-bold transition-colors">
+                    {project.name}
+                  </h3>
+                  <div className="relative z-2 flex shrink-0 gap-[7px]">
                     {project.links.github && (
                       <a
                         href={project.links.github}
@@ -117,6 +134,8 @@ export function ProjectsExplorer({ projects, allTechs }: ProjectsExplorerProps) 
           No projects match your filters.
         </div>
       )}
+
+      <ProjectModal project={modal.project} open={modal.open} onOpenChange={modal.onOpenChange} />
     </div>
   )
 }

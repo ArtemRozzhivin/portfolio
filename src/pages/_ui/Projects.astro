@@ -1,8 +1,10 @@
 ---
 import type { Project } from '@services/portfolio'
+import { ProjectModalHost } from '@components/islands/project-modal'
 import ArrowRightIcon from '@components/ui/icons/ArrowRightIcon.astro'
 import ExternalLinkIcon from '@components/ui/icons/ExternalLinkIcon.astro'
 import GithubIcon from '@components/ui/icons/GithubIcon.astro'
+import ImagesIcon from '@components/ui/icons/ImagesIcon.astro'
 import OptimizedImage from '@components/ui/OptimizedImage.astro'
 
 interface Props {
@@ -10,7 +12,9 @@ interface Props {
 }
 
 const { projects } = Astro.props
-const [feature, ...stacked] = projects.slice(0, 3)
+const featured = projects.slice(0, 3)
+const [feature, ...stacked] = featured
+const photoCount = (project: Project) => project.gallery?.length ?? 0
 ---
 
 <section id="projects" data-spy="projects" class="py-20">
@@ -39,9 +43,16 @@ const [feature, ...stacked] = projects.slice(0, 3)
       data-reveal
       data-card
       data-2col
-      class="glass col-span-12 grid grid-cols-[1.4fr_1fr] overflow-hidden rounded-(--card-radius-lg)"
+      class="glass group relative col-span-12 grid grid-cols-[1.4fr_1fr] overflow-hidden rounded-(--card-radius-lg)"
     >
-      <div class="aspect-video overflow-hidden">
+      <button
+        type="button"
+        data-project-open={feature.id}
+        aria-label={`Open ${feature.name} details`}
+        class="focus-visible:outline-accent absolute inset-0 z-1 cursor-pointer rounded-[inherit] focus-visible:outline-2 focus-visible:-outline-offset-2"
+      >
+      </button>
+      <div class="relative aspect-video overflow-hidden">
         <OptimizedImage
           src={feature.image}
           alt={feature.name}
@@ -49,13 +60,23 @@ const [feature, ...stacked] = projects.slice(0, 3)
           lqip={feature.lqip}
           class="h-full w-full object-contain"
         />
+        {
+          photoCount(feature) > 1 && (
+            <span class="glass text-ink pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-mono text-[11.5px] font-semibold">
+              <ImagesIcon class="size-3.5" />
+              {photoCount(feature)}
+            </span>
+          )
+        }
       </div>
       <div class="flex flex-col px-7 pt-[26px] pb-7">
         <div class="mb-3 flex items-start justify-between gap-3.5">
-          <h3 class="font-display text-ink text-[25px] font-bold tracking-[-0.01em]">
+          <h3
+            class="font-display text-ink group-hover:text-accent text-[25px] font-bold tracking-[-0.01em] transition-colors"
+          >
             {feature.name}
           </h3>
-          <div class="flex shrink-0 gap-2">
+          <div class="relative z-2 flex shrink-0 gap-2">
             {
               feature.links.github && (
                 <a
@@ -105,9 +126,15 @@ const [feature, ...stacked] = projects.slice(0, 3)
           data-reveal
           data-delay="80"
           data-card
-          class="glass col-span-6 flex flex-col overflow-hidden rounded-(--card-radius-lg)"
+          class="glass group relative col-span-6 flex flex-col overflow-hidden rounded-(--card-radius-lg)"
         >
-          <div class="aspect-video shrink-0 overflow-hidden">
+          <button
+            type="button"
+            data-project-open={project.id}
+            aria-label={`Open ${project.name} details`}
+            class="focus-visible:outline-accent absolute inset-0 z-1 cursor-pointer rounded-[inherit] focus-visible:outline-2 focus-visible:-outline-offset-2"
+          />
+          <div class="relative aspect-video shrink-0 overflow-hidden">
             <OptimizedImage
               src={project.image}
               alt={project.name}
@@ -115,11 +142,19 @@ const [feature, ...stacked] = projects.slice(0, 3)
               lqip={project.lqip}
               class="h-full w-full object-contain"
             />
+            {photoCount(project) > 1 && (
+              <span class="glass text-ink pointer-events-none absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] font-semibold">
+                <ImagesIcon class="size-3" />
+                {photoCount(project)}
+              </span>
+            )}
           </div>
           <div class="flex flex-1 flex-col px-[22px] py-5">
             <div class="mb-2 flex min-h-8 items-center justify-between gap-2.5">
-              <h3 class="font-display text-ink text-[20px] font-bold">{project.name}</h3>
-              <div class="flex shrink-0 gap-[7px]">
+              <h3 class="font-display text-ink group-hover:text-accent text-[20px] font-bold transition-colors">
+                {project.name}
+              </h3>
+              <div class="relative z-2 flex shrink-0 gap-[7px]">
                 {project.links.github && (
                   <a
                     href={project.links.github}
@@ -159,4 +194,6 @@ const [feature, ...stacked] = projects.slice(0, 3)
       ))
     }
   </div>
+
+  <ProjectModalHost client:idle projects={featured} />
 </section>
